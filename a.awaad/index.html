@@ -85,10 +85,6 @@ h+='</section><div class="socials"><a class="soc g0" href="https://wa.me/'+e(C.w
 h+='<button type="button" class="save" id="save">'+I.user+'Save contact</button><p class="foot">Tap the number to save it to your contacts</p>';
 document.getElementById('card').innerHTML=h;
 document.getElementById('save').addEventListener('click',function(){window.location.href='/a.awaad/abdelrhman-awaad.vcf';});
-  var u=URL.createObjectURL(b),a=document.createElement('a');
-  a.href=u;a.download='Abdelrhman-Awaad.vcf';document.body.appendChild(a);a.click();
-  setTimeout(function(){URL.revokeObjectURL(u);a.remove()},1500);
-});
 </script>
 </body>
 </html>
