@@ -83,9 +83,16 @@ h+='<nav class="actions"><a class="act" href="tel:'+e(C.phone)+'">'+I.phone+'Cal
 h+='<section class="list">'+row(I.phone,'Mobile',C.phone,'tel:'+C.phone)+row(I.mail,'Email',C.email,'mailto:'+C.email)+row(I.globe,'Website',C.website.replace(/^https?:\/\//,''),C.website);
 C.branches.forEach(function(x){h+=row(I.pin,x.label,x.text,x.url)});
 h+='</section><div class="socials"><a class="soc g0" href="https://wa.me/'+e(C.whatsapp)+'" target="_blank" rel="noopener" aria-label="WhatsApp">'+I.wa2+'</a><a class="soc" href="'+e(C.facebook)+'" target="_blank" rel="noopener" aria-label="Facebook">'+I.fb+'</a><a class="soc" href="'+e(C.instagram)+'" target="_blank" rel="noopener" aria-label="Instagram">'+I.ig+'</a><a class="soc g" href="'+e(C.review)+'" target="_blank" rel="noopener" aria-label="Rate us on Google" title="Rate us on Google">'+I.google+'</a><a class="soc" href="mailto:'+e(C.info)+'" aria-label="Email us" title="Email us">'+I.mailus+'</a></div>';
-h+='<button type="button" class="save" id="save">'+I.user+'Save contact</button><p class="foot">Tap the number to save it to your contacts</p>';
+h+='<button type="button" class="save" id="save">'+I.user+'Save contact</button><p class="foot" id="note">Tap the number to save it to your contacts</p>';
 document.getElementById('card').innerHTML=h;
-document.getElementById('save').addEventListener('click',function(){window.location.href='/m.aboushanab/mohamed-aboushanab.vcf';});
+document.getElementById('save').addEventListener('click',function(){
+  var f='/m.aboushanab/mohamed-aboushanab.vcf';
+  var mob=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  if(mob){window.location.href=f;return;}
+  var a=document.createElement('a');a.href=f;a.download='mohamed-aboushanab.vcf';document.body.appendChild(a);a.click();a.remove();
+  var n=document.getElementById('note');
+  if(n){n.textContent='Contact file downloaded. Open it to add it to Outlook or Apple Contacts, or import it in Gmail from contacts.google.com.';}
+});
 </script>
 </body>
 </html>
